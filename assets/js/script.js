@@ -1,13 +1,28 @@
 var cityFormEl = document.querySelector("#city-form");
 var cityNameInputEl = document.querySelector("#cityname");
 var currentWeatherEl = document.querySelector('#current-weather');
+var searchEl = document.querySelector('#search');
+var historyButtonsEl = document.querySelector("#history-buttons")
+var historyCardEl = document.querySelector("#history")
+var trashEl = document.querySelector("#trash")
+var searchHistoryArray = []
+
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
     // get city name value from input element
     var cityname = cityNameInputEl.value.trim();
 
+    // Set city name in local storage and generate history buttons
     if (cityname) {
+        searchHistoryArray.push(cityname);
+        localStorage.setItem("weatherSearch", JSON.stringify(searchHistoryArray));
+        var searchHistoryEl = document.createElement('button');
+        searchHistoryEl.className = "btn";
+        searchHistoryEl.setAttribute("data-city", cityname)
+        searchHistoryEl.innerHTML = cityname;
+        historyButtonsEl.appendChild(searchHistoryEl);
+        historyCardEl.removeAttribute("style")
         getWeatherInfo(cityname);
         cityNameInputEl.value = "";
     }
@@ -68,7 +83,7 @@ var getWeatherInfo = function (cityname) {
         });
 };
 
-
+// Display the weather on page
 var displayWeather = function (weather) {
     // check if api returned any weather data
     if (weather.length === 0) {
@@ -98,7 +113,42 @@ var displayWeather = function (weather) {
     uvIndex.id = "uv-index";
     uvIndex.innerHTML = "<strong>UV Index:</strong> " + weather.current.uvi;
     currentWeatherEl.appendChild(uvIndex);
+}
 
+// Load any past city weather searches
+var loadHistory = function () {
+    searchArray = JSON.parse(localStorage.getItem("weatherSearch"));
+
+    if (searchArray) {
+        searchHistoryArray = JSON.parse(localStorage.getItem("weatherSearch"));
+        for (let i = 0; i < searchArray.length; i++) {
+            var searchHistoryEl = document.createElement('button');
+            searchHistoryEl.className = "btn";
+            searchHistoryEl.setAttribute("data-city", searchArray[i])
+            searchHistoryEl.innerHTML = searchArray[i];
+            historyButtonsEl.appendChild(searchHistoryEl);
+            historyCardEl.removeAttribute("style")
+        }
+
+    }
+}
+
+// Search weather using search history buttons
+var buttonClickHandler = function (event) {
+    var cityname = event.target.getAttribute("data-city")
+    if (cityname) {
+        getWeatherInfo(cityname);
+    }
+}
+
+// Clear Search History
+var clearHistory = function (event) {
+    localStorage.removeItem("weatherSearch")
+    historyCardEl.setAttribute("style", "display: none")
 }
 
 cityFormEl.addEventListener("submit", formSubmitHandler);
+historyButtonsEl.addEventListener("click", buttonClickHandler);
+trashEl.addEventListener("click", clearHistory);
+
+loadHistory();

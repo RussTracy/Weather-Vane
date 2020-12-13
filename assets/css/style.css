@@ -40,7 +40,7 @@ main {
 
 p {
   font-size: 1rem;
-  margin: 10px;
+  margin: 5px 10px;
 }
 
  .btn {
@@ -161,6 +161,9 @@ p {
   background-color: var(--dark);
   padding: 2.5%;
   border-radius: calc(.18rem - 1px) calc(.18rem - 1px) 0 0;
+}
+.card-header i{
+  float: right;
 }
 
 .card-body {
