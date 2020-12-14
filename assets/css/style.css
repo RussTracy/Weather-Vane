@@ -39,7 +39,11 @@ main {
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: 1rem;
+  margin: 5px 5px;
+}
+.day p{
+  font-size: .9rem;
 }
 
  .btn {
@@ -136,6 +140,9 @@ p {
   background-color: rgba(255,255,255, 1);
   border-radius: var(--border-radius);
 }
+#weather-status img{
+  margin: -35px 0;
+}
 
 .icon-danger {
   color: rgb(255, 70, 70);
@@ -143,6 +150,23 @@ p {
 
 .icon-success {
   color: rgb(29, 153, 255);
+}
+
+/* UV-Index */
+.uv-index-green span{
+  padding: 1px 5px;
+  background-color: green;
+  border-radius: 5px;
+}
+.uv-index-yellow span{
+  padding: 1px 5px;
+  background-color: yellow;
+  border-radius: 5px;
+}
+.uv-index-red span{
+  padding: 1px 5px;
+  background-color: rgb(226, 59, 59);
+  border-radius: 5px;
 }
 
 /* CARDS */
@@ -158,9 +182,21 @@ p {
   padding: 2.5%;
   border-radius: calc(.18rem - 1px) calc(.18rem - 1px) 0 0;
 }
+.card-header i{
+  float: right;
+}
 
 .card-body {
   padding: 2.5%;
+}
+.hidden{
+  visibility: hidden;
+}
+.day{
+  background-color: cornflowerblue;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
 /* FORM */
