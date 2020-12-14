@@ -40,7 +40,10 @@ main {
 
 p {
   font-size: 1rem;
-  margin: 5px 10px;
+  margin: 5px 5px;
+}
+.day p{
+  font-size: .9rem;
 }
 
  .btn {
@@ -149,6 +152,23 @@ p {
   color: rgb(29, 153, 255);
 }
 
+/* UV-Index */
+.uv-index-green span{
+  padding: 1px 5px;
+  background-color: green;
+  border-radius: 5px;
+}
+.uv-index-yellow span{
+  padding: 1px 5px;
+  background-color: yellow;
+  border-radius: 5px;
+}
+.uv-index-red span{
+  padding: 1px 5px;
+  background-color: rgb(226, 59, 59);
+  border-radius: 5px;
+}
+
 /* CARDS */
 .card {
   margin: 0 0 20px 0;
@@ -168,6 +188,15 @@ p {
 
 .card-body {
   padding: 2.5%;
+}
+.hidden{
+  visibility: hidden;
+}
+.day{
+  background-color: cornflowerblue;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
 /* FORM */
